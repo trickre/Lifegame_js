@@ -1,0 +1,60 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                main();
+            },false);
+
+            var N = 100;
+            function main(){
+                //alert("Start LifeGame!");
+                //field の準備
+                var field = document.getElementById("field");
+
+                var x = 0;
+                var y = 0;
+                var id =0;
+                for(y=0;y<N;y++){
+                    for(x=0;x<N;x++){
+                        var div = document.createElement("div");
+                        div.id = encode(x,y).toString();
+                        div.className = "cell";
+                        field.appendChild(div);
+                    }
+                }
+                alert(encode(4,5));
+                on(10,10);
+            }
+            function encode(x,y){
+                return(x*N+y);
+            }
+
+            function decode_y(v){
+                return Math.floor(v%N);
+            }
+            
+            function decode_x(v){
+                var acc =  Math.floor(v%N);
+                return Math.floor((v-acc)/N);
+            }
+
+            function on(x,y){
+                var c = document.getElementById(encode(x,y).toString());
+                c.style.backgroundColor = "green";
+            }
+
+            function off(x,y){
+                var c = document.getElementById(encode(x,y).toString());
+                c.style.backgroundColor = "white";
+            }
+
+        </script>
+    </head>
+    <body>
+        <h1>LifeGame 40min</h1>
+        <div id="field">
+
+        </div>
+    </body>
+</html>
